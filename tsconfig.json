@@ -31,7 +31,10 @@
     ".eslintrc.js",
     "__tests__/**/*.tsx",
     "cypress/**/*.ts",
-    "commitlint.config.js"
+    "commitlint.config.js",
+    "next.config.mjs",
+    "next-i18next.config.js",
+    "middleware.js"
   ],
   "exclude": ["node_modules", "cypress", "cypress.config.ts"]
 }
