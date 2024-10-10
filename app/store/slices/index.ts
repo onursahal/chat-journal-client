@@ -1,4 +1,4 @@
-import { combineReducers } from '@reduxjs/toolkit';
+import { combineReducers } from '@reduxjs/toolkit'
 
 // Import your individual slice reducers here
 // import exampleSlice from './exampleSlice';
@@ -6,6 +6,6 @@ import { combineReducers } from '@reduxjs/toolkit';
 const rootReducer = combineReducers({
   // Add your slice reducers here
   // example: exampleSlice,
-});
+})
 
-export default rootReducer;
+export default rootReducer

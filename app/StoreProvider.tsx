@@ -1,16 +1,18 @@
-import { useRef } from 'react';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import { makeStore } from './store/store';
+'use client'
+
+import { useRef } from 'react'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { makeStore } from './store/store'
 
 export default function StoreProvider({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const storeRef = useRef<ReturnType<typeof makeStore>>();
+  const storeRef = useRef<ReturnType<typeof makeStore>>()
   if (!storeRef.current) {
-    storeRef.current = makeStore();
+    storeRef.current = makeStore()
   }
 
   return (
@@ -19,5 +21,5 @@ export default function StoreProvider({
         {children}
       </PersistGate>
     </Provider>
-  );
+  )
 }
