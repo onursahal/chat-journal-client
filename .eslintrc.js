@@ -34,6 +34,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:cypress/recommended',
     'next/core-web-vitals',
+    'plugin:storybook/recommended',
   ],
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'import', 'jsx-a11y'],
   overrides: [

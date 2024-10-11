@@ -57,3 +57,5 @@ logs
 # Temporary folders
 tmp/
 temp/
+
+*storybook.log

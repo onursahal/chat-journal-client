@@ -11,6 +11,7 @@ const config: Config = {
   coverageProvider: 'v8',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
+    '^@components/(.*)$': '<rootDir>/app/components/$1',
   },
 }
 
