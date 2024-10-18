@@ -51,5 +51,7 @@ module.exports = {
       ],
     },
   ],
-  rules: {},
+  rules: {
+    '@typescript-eslint/no-unsafe-assignment': 2,
+  },
 }

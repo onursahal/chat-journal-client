@@ -12,7 +12,7 @@ export function middleware(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
 
-  if (pathnameHasLocale) return
+  if (pathnameHasLocale || pathname.includes('api')) return
 
   const locale = defaultLocale
   request.nextUrl.pathname = `/${locale}${pathname}`
