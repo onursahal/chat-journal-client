@@ -4,18 +4,7 @@ import { NextRequest } from 'next/server'
 import { userTypeDefs } from './type/User'
 import prisma from '@/app/lib/prisma'
 
-const typeDefs = [
-  userTypeDefs,
-  `#graphql
-   type Query {
-      users: [User]
-      user(id: ID!): User
-   }
-   type Mutation {
-      createUser(email: String!, name: String): User
-   }
-   `,
-]
+const typeDefs = [userTypeDefs]
 
 const resolvers = {
   Mutation: {

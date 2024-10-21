@@ -48,6 +48,7 @@
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "server-only": "^0.0.1",
+    "swr": "^2.2.5",
     "yup": "^1.4.0"
   },
   "devDependencies": {

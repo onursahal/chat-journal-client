@@ -1,5 +1,3 @@
-import 'server-only'
-
 const locales: Record<
   string,
   () => Promise<{ default: Record<string, string> }>

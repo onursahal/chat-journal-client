@@ -1,11 +1,70 @@
+'use client'
+
 import Image from 'next/image'
 import { getLocales } from './locales'
-export default async function Home({
-  params: locale,
+import useSWR from 'swr'
+import axios, { AxiosError, AxiosResponse } from 'axios'
+import { useState, useEffect } from 'react'
+
+const fetcher = (url: string) =>
+  axios
+    .post(url, {
+      query: `
+        query {
+          users {
+            name
+          }
+        }
+      `,
+    })
+    .then(
+      (res: AxiosResponse<{ data: { users: { name: string }[] } }>) =>
+        res.data.data
+    )
+    .catch()
+
+const postUser = (url: string, data: { name: string; email: string }) =>
+  axios
+    .post(url, {
+      query: `
+        mutation {
+            createUser(name: "${data.name}", email: "${data.email}") {
+              name
+              email
+            }
+          }
+        
+        `,
+    })
+    .then(
+      (
+        res: AxiosResponse<{
+          data: { createUser: { name: string; email: string } }
+        }>
+      ) => res.data.data
+    )
+    .catch((err: AxiosError) => err.message)
+
+export default function Home({
+  params: { locale },
 }: {
   params: { locale: string }
 }) {
-  const t = await getLocales(locale.locale)
+  const [t, setT] = useState<{ default: Record<string, string> }>()
+  const [state, setState] = useState<{ name: string; email: string }>({
+    email: '',
+    name: '',
+  })
+  const { data, mutate } = useSWR('/api/graphql', fetcher)
+
+  useEffect(() => {
+    const translationResponse = async () => {
+      const res = await getLocales(locale)
+      setT(res)
+    }
+    translationResponse().catch((error) => console.error(error))
+  }, [locale])
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -17,7 +76,32 @@ export default async function Home({
           height={38}
           priority
         />
-        <h1>{t?.default.hello}</h1>
+        <h1>{t?.default?.hello}</h1>
+        <h1>{data?.users?.map((user) => user.name).join(', ')}</h1>
+        <input
+          onChange={(e) =>
+            setState((prev) => ({
+              ...prev,
+              name: e.target.value,
+            }))
+          }
+        />
+        <input
+          onChange={(e) =>
+            setState((prev) => ({
+              ...prev,
+              email: e.target.value,
+            }))
+          }
+        />
+        <button
+          onClick={async () => {
+            await postUser('/api/graphql', state)
+            mutate()
+          }}
+        >
+          Create user
+        </button>
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
             Get started by editing{' '}
