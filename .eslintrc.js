@@ -26,7 +26,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
@@ -36,7 +35,7 @@ module.exports = {
     'next/core-web-vitals',
     'plugin:storybook/recommended',
   ],
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'import', 'jsx-a11y'],
+  plugins: ['@typescript-eslint', 'react', 'import', 'jsx-a11y'],
   overrides: [
     {
       files: ['cypress/**/*.ts', 'cypress.config.ts'],
