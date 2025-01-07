@@ -34,7 +34,8 @@
     "commitlint.config.js",
     "next.config.mjs",
     "next-i18next.config.js",
-    "middleware.js"
+    "middleware.js",
+    ".next/types/app/[locale]/page.tsx"
   ],
   "exclude": ["node_modules", "cypress", "cypress.config.ts"]
 }
