@@ -1,20 +1,12 @@
 'use server'
 
-import { gql } from '@apollo/client'
-import { getClient } from '@/app/apollo-client/ApolloClient'
+import { getClient } from '@/src/graphql/ApolloClient'
 import { cookies } from 'next/headers'
+import { signInQuery } from '@/src/graphql/queries/auth.query'
+import { signUpQuery } from '@/src/graphql/mutations/auth.mutation'
 
 export const signInAction = async (email: string, password: string) => {
   try {
-    const signInQuery = gql`
-      query SignIn($email: String!, $password: String!) {
-        signIn(email: $email, password: $password) {
-          accessToken
-          refreshToken
-        }
-      }
-    `
-
     const data = await getClient().query({
       query: signInQuery,
       variables: { email, password },
@@ -37,27 +29,9 @@ export const signUpAction = async (
   email: string,
   password: string
 ) => {
-  const query = gql`
-    mutation SignUp(
-      $firstName: String!
-      $lastName: String!
-      $email: String!
-      $password: String!
-    ) {
-      signUp(
-        firstName: $firstName
-        lastName: $lastName
-        email: $email
-        password: $password
-      ) {
-        id
-      }
-    }
-  `
-
   try {
     const data = await getClient().mutate({
-      mutation: query,
+      mutation: signUpQuery,
       variables: {
         firstName,
         lastName,

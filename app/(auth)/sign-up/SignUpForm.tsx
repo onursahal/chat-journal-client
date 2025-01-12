@@ -17,8 +17,8 @@ import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition } from 'react'
 import { Loader2 } from 'lucide-react'
-import { signUpSchema } from '../../definitions/auth'
-import { signUpAction } from '../../actions/auth.actions'
+import { signUpSchema } from '../../../src/definitions/auth'
+import { signUpAction } from '../../../src/graphql/actions/auth.action'
 
 export const SignUpForm = () => {
   const router = useRouter()
@@ -157,7 +157,7 @@ export const SignUpForm = () => {
             variant="link"
             className="text-white text-xs pl-0"
             type="button"
-            onClick={() => router.push('/auth/sign-in')}
+            onClick={() => router.push('/sign-in')}
           >
             {isLoading ? (
               <Loader2 className="w-4 h-4 animate-spin" />

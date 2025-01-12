@@ -20,7 +20,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/graphql/*": ["src/graphql/*"],
+      "@/components/*": ["src/components/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/definitions/*": ["src/definitions/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/fonts/*": ["src/fonts/*"]
     }
   },
   "include": [

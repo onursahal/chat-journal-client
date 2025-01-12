@@ -17,8 +17,8 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { signInAction } from '../../actions/auth.actions'
-import { signInSchema } from '@/app/definitions/auth'
+import { signInAction } from '../../../src/graphql/actions/auth.action'
+import { signInSchema } from '@/src/definitions/auth'
 
 export const SignInForm = () => {
   const router = useRouter()
@@ -110,7 +110,7 @@ export const SignInForm = () => {
               variant="link"
               className="text-white text-xs pl-0"
               type="button"
-              onClick={() => router.push('/auth/sign-up')}
+              onClick={() => router.push('/sign-up')}
             >
               Sign Up
             </Button>
