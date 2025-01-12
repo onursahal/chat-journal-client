@@ -5,7 +5,11 @@ import { cookies } from 'next/headers'
 import { signInQuery } from '@/src/graphql/queries/auth.query'
 import { signUpQuery } from '@/src/graphql/mutations/auth.mutation'
 
-export const signInAction = async (email: string, password: string) => {
+export const signInAction = async (
+  email: string,
+  password: string,
+  rememberMe?: boolean
+) => {
   try {
     const data = await getClient().query({
       query: signInQuery,
@@ -14,9 +18,11 @@ export const signInAction = async (email: string, password: string) => {
 
     cookies().set('accessToken', data.data.signIn.accessToken)
     cookies().set('refreshToken', data.data.signIn.refreshToken)
+    cookies().set('rememberMe', rememberMe ? 'true' : 'false')
 
     return { data: data.data.signIn, errorMessage: null }
-  } catch {
+  } catch (error) {
+    console.log(JSON.stringify(error, null, 2))
     return { data: null, errorMessage: 'Something went wrong' }
   }
 }

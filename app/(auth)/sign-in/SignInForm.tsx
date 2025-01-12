@@ -26,22 +26,29 @@ export const SignInForm = () => {
     defaultValues: {
       email: '',
       password: '',
+      rememberMe: false,
     },
     resolver: zodResolver(signInSchema),
   })
   const [isLoading, startTransition] = useTransition()
 
   const handleLogin = async (inputs: {
-    email: string | null
-    password: string | null
+    email: string
+    password: string
+    rememberMe: boolean
   }) => {
     startTransition(async () => {
-      const email = inputs.email || ''
-      const password = inputs.password || ''
-      const { data, errorMessage } = await signInAction(email, password)
+      const { email, password, rememberMe } = inputs
+      const { data, errorMessage } = await signInAction(
+        email,
+        password,
+        rememberMe
+      )
       console.log({ data, errorMessage })
     })
   }
+
+  console.log(form.getValues().rememberMe)
 
   return (
     <>
@@ -85,12 +92,25 @@ export const SignInForm = () => {
           />
 
           <div className="flex justify-between w-full items-center">
-            <div className="flex items-center gap-2">
-              <Checkbox id="remember-me" className="border-white" />
-              <Label htmlFor="remember-me" className="text-white text-xs">
-                Remember me
-              </Label>
-            </div>
+            <FormField
+              name="rememberMe"
+              render={({ field }) => (
+                <div className="flex items-center gap-2">
+                  <FormControl>
+                    <Checkbox
+                      {...field}
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      id="remember-me"
+                      className="border-white"
+                    />
+                  </FormControl>
+                  <Label htmlFor="remember-me" className="text-white text-xs">
+                    Remember me
+                  </Label>
+                </div>
+              )}
+            />
             <Button
               variant="link"
               className="text-white text-xs self-end"
