@@ -8,3 +8,12 @@ export const signInQuery = gql`
     }
   }
 `
+
+export const getTokenPairQuery = gql`
+  query GetTokenPair($currentRefreshToken: String!) {
+    getTokenPair(currentRefreshToken: $currentRefreshToken) {
+      accessToken
+      refreshToken
+    }
+  }
+`

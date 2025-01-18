@@ -39,16 +39,13 @@ export const SignInForm = () => {
   }) => {
     startTransition(async () => {
       const { email, password, rememberMe } = inputs
-      const { data, errorMessage } = await signInAction(
-        email,
-        password,
-        rememberMe
-      )
-      console.log({ data, errorMessage })
+      const { error } = await signInAction(email, password, rememberMe)
+
+      if (!error) {
+        router.push('/home')
+      }
     })
   }
-
-  console.log(form.getValues().rememberMe)
 
   return (
     <>

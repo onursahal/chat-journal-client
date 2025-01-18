@@ -2,8 +2,12 @@
 
 import { getClient } from '@/src/graphql/ApolloClient'
 import { cookies } from 'next/headers'
-import { signInQuery } from '@/src/graphql/queries/auth.query'
+import {
+  getTokenPairQuery,
+  signInQuery,
+} from '@/src/graphql/queries/auth.query'
 import { signUpQuery } from '@/src/graphql/mutations/auth.mutation'
+import { errorHandlerAction } from '@/src/lib/errorHandler'
 
 export const signInAction = async (
   email: string,
@@ -20,14 +24,11 @@ export const signInAction = async (
     cookies().set('refreshToken', data.data.signIn.refreshToken)
     cookies().set('rememberMe', rememberMe ? 'true' : 'false')
 
-    return { data: data.data.signIn, errorMessage: null }
+    return { data: data.data.signIn, error: null }
   } catch (error) {
-    console.log(JSON.stringify(error, null, 2))
-    return { data: null, errorMessage: 'Something went wrong' }
+    return errorHandlerAction(error)
   }
 }
-
-// TODO: Backend error handling will change
 
 export const signUpAction = async (
   firstName: string,
@@ -47,9 +48,23 @@ export const signUpAction = async (
     })
 
     return { data: data.data.signUp, errorMessage: null }
-  } catch {
-    return { data: null, errorMessage: 'Something went wrong' }
+  } catch (error) {
+    return errorHandlerAction(error)
   }
 }
 
-// TODO: Backend error handling will change
+export const getTokenPairAction = async (refreshToken: string) => {
+  try {
+    const data = await getClient().query({
+      query: getTokenPairQuery,
+      variables: { refreshToken },
+    })
+
+    cookies().set('accessToken', data.data.getTokenPair.accessToken)
+    cookies().set('refreshToken', data.data.getTokenPair.refreshToken)
+
+    return { data: data.data.getTokenPair, errorMessage: null }
+  } catch (error) {
+    return errorHandlerAction(error)
+  }
+}
