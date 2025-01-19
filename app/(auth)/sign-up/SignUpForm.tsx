@@ -38,13 +38,13 @@ export const SignUpForm = () => {
 
   const handleSignUp = () => {
     startTransition(async () => {
-      const { data, errorMessage } = await signUpAction(
+      const { data, error } = await signUpAction(
         form.getValues().firstName,
         form.getValues().lastName,
         form.getValues().email,
         form.getValues().password
       )
-      console.log({ data, errorMessage })
+      console.log({ data, error })
     })
   }
 

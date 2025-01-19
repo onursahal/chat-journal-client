@@ -47,7 +47,7 @@ export const signUpAction = async (
       },
     })
 
-    return { data: data.data.signUp, errorMessage: null }
+    return { data: data.data.signUp, error: null }
   } catch (error) {
     return errorHandlerAction(error)
   }
