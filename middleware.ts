@@ -3,14 +3,15 @@
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 
-const protectedRoutes = ['/home']
+const protectedRoutes = ['/dashboard']
 const publicRoutes = ['/sign-in', '/sign-up']
 
 export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname
   const accessToken = cookies().get('accessToken')?.value
   const refreshToken = cookies().get('refreshToken')?.value
-  const redirectHome = () => NextResponse.redirect(new URL('/home', req.url))
+  const redirectHome = () =>
+    NextResponse.redirect(new URL('/dashboard', req.url))
   const redirectSignIn = () =>
     NextResponse.redirect(new URL('/sign-in', req.url))
 

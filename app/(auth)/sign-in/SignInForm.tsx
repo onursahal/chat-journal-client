@@ -42,13 +42,13 @@ export const SignInForm = () => {
       const { error } = await signInAction(email, password, rememberMe)
 
       if (!error) {
-        router.push('/home')
+        router.push('/dashboard')
       }
     })
   }
 
   return (
-    <>
+    <div className="bg-card rounded-md px-4 py-8">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleLogin)}
@@ -57,12 +57,12 @@ export const SignInForm = () => {
           <FormField
             name="email"
             render={({ field }) => (
-              <FormItem className="text-white flex flex-col w-full">
-                <FormLabel className="text-white">Email</FormLabel>
+              <FormItem className="text-primary-foreground flex flex-col w-full">
+                <FormLabel className="text-primary-foreground">Email</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
-                    className="text-white"
+                    className="border-primary-foreground text-primary-foreground"
                     placeholder="Enter your email"
                   />
                 </FormControl>
@@ -73,12 +73,14 @@ export const SignInForm = () => {
           <FormField
             name="password"
             render={({ field }) => (
-              <FormItem className="text-white flex flex-col w-full">
-                <FormLabel className="text-white">Password</FormLabel>
+              <FormItem className="text-primary-foreground flex flex-col w-full">
+                <FormLabel className="text-primary-foreground">
+                  Password
+                </FormLabel>
                 <FormControl>
                   <Input
                     {...field}
-                    className="text-white"
+                    className="border-primary-foreground text-primary-foreground"
                     placeholder="Enter your email"
                     type="password"
                   />
@@ -99,10 +101,13 @@ export const SignInForm = () => {
                       checked={field.value}
                       onCheckedChange={field.onChange}
                       id="remember-me"
-                      className="border-white"
+                      className="border-primary-foreground"
                     />
                   </FormControl>
-                  <Label htmlFor="remember-me" className="text-white text-xs">
+                  <Label
+                    htmlFor="remember-me"
+                    className="text-primary-foreground text-xs"
+                  >
                     Remember me
                   </Label>
                 </div>
@@ -110,22 +115,26 @@ export const SignInForm = () => {
             />
             <Button
               variant="link"
-              className="text-white text-xs self-end"
+              className="text-primary-foreground text-xs self-end"
               type="button"
               onClick={() => console.log('redirect to forgot password')}
             >
               Forgot Password ?
             </Button>
           </div>
-          <Button className="w-full" disabled={isLoading} type="submit">
+          <Button
+            className="w-full bg-primary"
+            disabled={isLoading}
+            type="submit"
+          >
             {isLoading && <Loader2 className="animate-spin" />}Sign In
           </Button>
-          <Label htmlFor="sign-up" className="text-white text-xs">
+          <Label htmlFor="sign-up" className="text-primary-foreground text-xs">
             Don&apos;t have an account ?{' '}
             <Button
               id="sign-up"
               variant="link"
-              className="text-white text-xs pl-0"
+              className="text-primary-foreground text-xs pl-0"
               type="button"
               onClick={() => router.push('/sign-up')}
             >
@@ -134,6 +143,6 @@ export const SignInForm = () => {
           </Label>
         </form>
       </Form>
-    </>
+    </div>
   )
 }
