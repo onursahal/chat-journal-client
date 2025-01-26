@@ -22,7 +22,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ brandName, brandLogo }) => (
-  <div className="w-1/2 fixed top-10 bg-card h-16 rounded-md items-center justify-between flex px-4">
+  <div className="w-[calc(100%-2rem)] bg-card flex h-16 rounded-md items-center justify-between px-4 absolute top-4 z-20 items-start content-start">
     <span className="text-primary-foreground text-2xl font-bold">
       {brandLogo || brandName}
     </span>

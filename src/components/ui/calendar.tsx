@@ -19,14 +19,17 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn('p-3 bg-card rounded-md calendar-container', className)}
+      className={cn(
+        'p-3 bg-card rounded-md calendar-container self-center',
+        className
+      )}
       classNames={{
         months: 'flex flex-col sm:flex-row relative',
         month: 'space-y-4',
         month_caption:
           'flex justify-center relative items-center calendar-month-caption mb-1 ',
         caption_label:
-          'text-md font-bold text-primary-foreground bg-primary calendar-caption-label px-12 rounded-md',
+          'text-md font-bold text-calendar-foreground bg-calendar calendar-caption-label px-12 rounded-md',
         nav: 'flex',
         month_grid: 'w-full border-collapse space-y-1',
         weekdays: 'flex bg-primary rounded-md items-center h-12 gap-2',
@@ -41,14 +44,10 @@ function Calendar({
         ),
         day_button: cn(
           buttonVariants({ variant: 'ghost' }),
-          'calendar-cell p-0 aria-selected:opacity-100 font-bold'
+          'calendar-cell p-0 aria-selected:opacity-100 font-bold hover:bg-transparentz`'
         ),
-        range_start: 'day-range-start',
-        range_end: 'day-range-end',
         selected: 'bg-calendar-green text-calendar-foreground',
         today: 'bg-calendar-yellow text-calendar-foreground',
-        outside: 'day-outside',
-        disabled: 'day-disabled',
         day_range_middle:
           'aria-selected:bg-accent aria-selected:text-accent-foreground',
         hidden: 'invisible bg-transparent',
@@ -57,7 +56,7 @@ function Calendar({
       components={{
         PreviousMonthButton: ({ className, ...props }) => (
           <Button
-            className="absolute left-0 z-10 calendar-nav-btn bg-primary p-0 hover:text-black hover:bg-white text-primary-foreground"
+            className="absolute left-0 z-10 calendar-nav-btn bg-calendar p-0 hover:text-black hover:bg-white text-calendar-foreground"
             {...props}
           >
             <ChevronLeft className={cn('calendar-nav-icon', className)} />
@@ -65,7 +64,7 @@ function Calendar({
         ),
         NextMonthButton: ({ className, ...props }) => (
           <Button
-            className="absolute right-0 z-10 calendar-nav-btn bg-primary p-0 hover:text-black hover:bg-white text-primary-foreground"
+            className="absolute right-0 z-10 calendar-nav-btn bg-calendar p-0 hover:text-black hover:bg-white text-calendar-foreground"
             {...props}
           >
             <ChevronRight className={cn('calendar-nav-icon', className)} />

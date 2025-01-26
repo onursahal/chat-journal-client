@@ -109,6 +109,7 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* calendar responsive styles */
   .calendar-container {
     @apply h-[400px] w-[408px];
   }
@@ -139,6 +140,7 @@ body {
 }
 
 @media (min-width: 768px) {
+  /* calendar responsive styles */
   .calendar-container {
     @apply h-[496px] w-[520px];
   }
@@ -169,6 +171,7 @@ body {
 }
 
 @media (min-width: 1024px) {
+  /* calendar responsive styles */
   .calendar-container {
     @apply h-[752px] w-[856px];
   }
@@ -197,6 +200,7 @@ body {
 }
 
 @media (min-width: 1280px) {
+  /* calendar responsive styles */
   .calendar-container {
     @apply h-[848px] w-[968px];
   }
