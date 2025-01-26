@@ -43,6 +43,12 @@ body {
     --calendar-foreground: #1a1b1e;
     --calendar-yellow: #fcd34d;
     --calendar-green: #86efac;
+
+    /* Calendar responsive sizes */
+    --calendar-cell-size-base: 16px;
+    --calendar-cell-size-md: 24px;
+    --calendar-cell-size-lg: 28px;
+    --calendar-cell-size-xl: 32px;
   }
   .dark {
     --background: #1f2937;
@@ -82,5 +88,137 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Calendar responsive styles */
+.calendar-container {
+  @apply h-[400px] w-[300px];
+}
+
+.calendar-cell {
+  @apply h-16 w-16;
+}
+
+.calendar-nav-btn {
+  @apply h-12 w-12;
+}
+
+.calendar-nav-icon {
+  @apply h-6 w-6;
+}
+
+@media (max-width: 768px) {
+  .calendar-container {
+    @apply h-[400px] w-[408px];
+  }
+
+  .calendar-cell {
+    @apply h-12 w-12;
+  }
+
+  .calendar-nav-btn {
+    @apply h-8 w-8;
+  }
+
+  .calendar-nav-icon {
+    @apply h-8 w-8;
+  }
+
+  .calendar-weekday {
+    @apply w-12;
+  }
+
+  .calendar-month-caption {
+    @apply h-8;
+  }
+
+  .calendar-caption-label {
+    @apply py-1;
+  }
+}
+
+@media (min-width: 768px) {
+  .calendar-container {
+    @apply h-[496px] w-[520px];
+  }
+
+  .calendar-cell {
+    @apply h-16 w-16;
+  }
+
+  .calendar-nav-btn {
+    @apply h-12 w-12;
+  }
+
+  .calendar-nav-icon {
+    @apply h-12 w-12;
+  }
+
+  .calendar-weekday {
+    @apply w-16;
+  }
+
+  .calendar-month-caption {
+    @apply h-12;
+  }
+
+  .calendar-caption-label {
+    @apply py-3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .calendar-container {
+    @apply h-[752px] w-[856px];
+  }
+
+  .calendar-cell {
+    @apply h-28 w-28;
+  }
+
+  .calendar-nav-btn {
+    @apply h-16 w-16;
+  }
+
+  .calendar-nav-icon {
+    @apply h-9 w-9;
+  }
+
+  .calendar-weekday {
+    @apply w-28;
+  }
+  .calendar-month-caption {
+    @apply h-16;
+  }
+  .calendar-caption-label {
+    @apply py-5;
+  }
+}
+
+@media (min-width: 1280px) {
+  .calendar-container {
+    @apply h-[848px] w-[968px];
+  }
+
+  .calendar-cell {
+    @apply h-32 w-32;
+  }
+
+  .calendar-nav-btn {
+    @apply h-20 w-20;
+  }
+
+  .calendar-nav-icon {
+    @apply h-10 w-10;
+  }
+  .calendar-weekday {
+    @apply w-32;
+  }
+  .calendar-month-caption {
+    @apply h-20;
+  }
+  .calendar-caption-label {
+    @apply py-7;
   }
 }

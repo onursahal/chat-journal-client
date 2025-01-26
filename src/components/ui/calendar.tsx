@@ -19,28 +19,29 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn('p-3 bg-card rounded-md', className)}
+      className={cn('p-3 bg-card rounded-md calendar-container', className)}
       classNames={{
-        months: 'flex flex-col sm:flex-row relative space-y-4  sm:space-y-0',
+        months: 'flex flex-col sm:flex-row relative',
         month: 'space-y-4',
-        month_caption: 'flex justify-center relative items-center h-20 mb-1 ',
+        month_caption:
+          'flex justify-center relative items-center calendar-month-caption mb-1 ',
         caption_label:
-          'text-sm font-bold text-primary-foreground bg-primary py-8 px-12 rounded-md',
+          'text-md font-bold text-primary-foreground bg-primary calendar-caption-label px-12 rounded-md',
         nav: 'flex',
         month_grid: 'w-full border-collapse space-y-1',
         weekdays: 'flex bg-primary rounded-md items-center h-12 gap-2',
         weekday:
-          'text-muted-foreground rounded-md w-32 font-bold text-[0.8rem]',
+          'text-muted-foreground rounded-md calendar-weekday font-bold text-[0.8rem]',
         week: 'flex w-full mt-2 gap-2',
         day: cn(
-          'relative p-0 h-32 w-32 text-center text-sm rounded-md [&:not([data-today]):not([data-selected])]:text-calendar-foreground [&:not([data-today]):not([data-selected])]:bg-calendar focus-within:relative focus-within:z-20 [&:has([aria-selected].day-range-end)]:rounded-r-md',
+          'relative p-0 calendar-cell text-center text-sm rounded-md [&:not([data-today]):not([data-selected])]:text-calendar-foreground [&:not([data-today]):not([data-selected])]:bg-calendar focus-within:relative focus-within:z-20 [&:has([aria-selected].day-range-end)]:rounded-r-md',
           props.mode === 'range'
             ? '[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md'
             : '[&:has([aria-selected])]:rounded-md'
         ),
         day_button: cn(
           buttonVariants({ variant: 'ghost' }),
-          'h-32 w-32 p-0 aria-selected:opacity-100 font-bold'
+          'calendar-cell p-0 aria-selected:opacity-100 font-bold'
         ),
         range_start: 'day-range-start',
         range_end: 'day-range-end',
@@ -56,18 +57,18 @@ function Calendar({
       components={{
         PreviousMonthButton: ({ className, ...props }) => (
           <Button
-            className="absolute left-0 z-10 h-20 w-20 bg-primary p-0 hover:text-black hover:bg-white text-primary-foreground"
+            className="absolute left-0 z-10 calendar-nav-btn bg-primary p-0 hover:text-black hover:bg-white text-primary-foreground"
             {...props}
           >
-            <ChevronLeft className={cn('h-10 w-10', className)} />
+            <ChevronLeft className={cn('calendar-nav-icon', className)} />
           </Button>
         ),
         NextMonthButton: ({ className, ...props }) => (
           <Button
-            className="absolute right-0 z-10 h-20 w-20 bg-primary p-0 hover:text-black hover:bg-white text-primary-foreground"
+            className="absolute right-0 z-10 calendar-nav-btn bg-primary p-0 hover:text-black hover:bg-white text-primary-foreground"
             {...props}
           >
-            <ChevronRight className={cn('h-10 w-10', className)} />
+            <ChevronRight className={cn('calendar-nav-icon', className)} />
           </Button>
         ),
       }}
